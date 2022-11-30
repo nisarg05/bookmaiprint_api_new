@@ -395,7 +395,7 @@ exports.searchQuestionsHandler = async(req,res,next) => {
 exports.getQuestionsAdmin = async(req,res,next) => {
     try {
         const page = req.params.page;
-        const limit = 3;
+        const limit = 20;
       
 
         var count = await count_qustions(req.body.name);

@@ -359,7 +359,7 @@ exports.getQuestions = async(req,res,next) => {
 exports.searchQuestionsHandler = async(req,res,next) => {
     try {
         const page = req.params.search_question;
-        const limit = 3;
+        const limit = 20;
 
         var count
     

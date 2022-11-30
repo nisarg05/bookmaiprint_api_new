@@ -359,8 +359,11 @@ exports.getQuestions = async(req,res,next) => {
 exports.searchQuestionsHandler = async(req,res,next) => {
     try {
         const page = req.params.search_question;
-        const limit = 20;
-        var count = await count_qustions();
+        const limit = 3;
+
+        var count
+    
+        count  = await count_qustions();
 
         var questionList = await questionModel.find({deleted_at: null}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
 
@@ -392,15 +395,16 @@ exports.searchQuestionsHandler = async(req,res,next) => {
 exports.getQuestionsAdmin = async(req,res,next) => {
     try {
         const page = req.params.page;
-        const limit = 8;
-        var count = await count_qustions();
+        const limit = 3;
+      
 
+        var count = await count_qustions(req.body.name);
         let user_id = req.user != null && req.user.user_id != undefined && req.user.user_id != null && req.user.user_id != "" ? req.user.user_id : null;
 
         // var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
         
         var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
-console.log(questionList);
+          console.log(questionList);
         for(let i = 0; i < questionList.length; i++)
         {
             let details = await get_question_info_admin(questionList[i]);
@@ -420,7 +424,8 @@ console.log(questionList);
             data: {
                 questions : result,
                 totalPages : Math.ceil(count / limit),
-                currentPage : page
+                currentPage : page,
+                count: count,
             }
         })
     }
@@ -547,9 +552,17 @@ exports.getQuestionByIdAdmin = async(req,res,next) => {
     }
 }
 
-async function count_qustions() {
-    const count = await questionModel.find({deleted_at: null}).count();
-    return count;
+async function count_qustions(searchstring="") {
+    if(searchstring==""){
+        const count = await questionModel.find({deleted_at: null}).count();
+        return count;
+    }
+    else
+    {
+        const count = await questionModel.find({deleted_at: null,question:searchstring}).count();
+        return count;
+    }
+   
 }
 
 async function get_question_info(data) {

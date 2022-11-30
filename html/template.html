@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mobyl Invoice</title>
+        <style>
+            .headerText {
+                font-size : 7px;
+                font-style: oblique;
+                font-weight: 500;
+                margin-bottom: 18px;
+            }
+            .bodyTable {
+                border: 1px solid rgba(0,0,0,.125);
+                border-collapse : collapse;
+                width: 100%;
+            }
+            .bodyTable td {
+                border: 1px solid rgba(0,0,0,.225) !important;
+                height: 10px !important;  
+                overflow: hidden;
+                padding-left: 5px !important;
+                padding-right: 5px !important;
+                vertical-align: top !important;
+            }
+            .headerTable {
+                border: 1px solid rgba(0,0,0,.325);
+                border-bottom: none;
+                width: 100%;
+            }
+            .address p {
+                font-size : 7px;
+                line-height: 2.5px;
+                font-weight: 500;
+            }
+            .address h6 {
+                line-height: 5px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .tax_invoice h3 {
+                float: right;
+                text-align: right;
+                font-weight: 400;
+                /* position: absolute; */
+                bottom: 10;
+                margin-left: 57px;
+            }
+            .bodyTable div p {
+                font-size: 8px;
+                line-height: 3px !important;
+                font-weight: 500;
+                align-items: flex-start;
+            }
+            .bodyTable p {
+                font-size: 8px;
+                line-height: 0px !important;
+                font-weight: 500;
+                align-items: flex-start;
+                vertical-align: top !important;
+            }
+            .font-weight-600 {
+                font-weight: 600 !important;
+            }
+            .word-break {
+                position: relative;
+                word-break: break-word !important;
+            }
+            .display-inline {
+                display: inline-block;
+            }
+            tr.no-bottom-border td {
+                border-bottom: none
+            }
+            .text-align-right {
+                text-align: right;
+            }
+            /* .order_header_top p {
+                width: 49%;
+                display: inline-block;
+                margin-top: 0px !important;
+            } */
+        </style>
+    </head>
+    <body>
+        {{#each users}}
+        <table class="headerTable">
+            <tbody>
+                <tr>
+                    <!-- <td style="width: 24%;">
+                        {{#if this.get_invoice_details}}
+                        {{#each this.invoice_detail}}
+                        <img src="http://13.234.30.96:8000/{{this.invoice_image}}" height="90px" width="auto" />
+                        {{/each}}
+                        {{else}}
+                        <img src="http://13.234.30.96:8000/logo/image-000.png" height="40px" />
+                        {{/if}}
+                    </td> -->
+                    <td style="width: 40%;" class="address">
+                        {{#if this.get_invoice_details}}
+                        {{#each this.invoice_detail}}
+                        <div>{{{this.invoice_name_with_address}}}</div>
+                        {{/each}}
+                        {{else}}
+                        <!-- <h6>TANVI Fitness Private Limited.</h6>
+                        <p>361 Avvai Shanmugam Salai (Lloyds Road),</p>
+                        <p>Gopalapuram, Chennai,</p>
+                        <p>Pin Code: 600086</p>
+                        <p>Chennai, India</p>
+                        <p>Phone: 04467447070</p>
+                        <p>Pan No: AAACZ5230C</p>
+                        <p>Service Tax No: AAACZ5230CSD001</p>
+                        <p>Tan No: CHEZ03269A</p>
+                        <p style="margin-bottom: 2px;">GSTIN: 33AAACZ5230C1ZU</p> -->
+                        {{/if}}
+                    </td>
+                    <td style="width: 36%;" class="tax_invoice">
+                        <h3>TAX INVOICE</h3>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bodyTable" style="border-bottom: none;">
+            <tbody>
+                <tr class="no-bottom-border">
+                    <td style="width: 50%;" class="order_header_top">
+                        <p style="width: 49%; display: inline-block;">INVOICE#</p>
+                       
+                        <p style="width: 49%; display: inline-block;">: {{this.invoice_no}}</p>
+                       
+                        
+                        <p style="width: 49%; display: inline-block;">DATE</p>
+                        
+                        <p style="width: 49%; display: inline-block;">: {{this.created_at}}</p>
+                       
+                        <!-- <p style="width: 49%; display: inline-block;">TERMS</p>
+                        <p style="width: 49%; display: inline-block;">: Due on Receipt</p>
+                        <p style="width: 49%; display: inline-block;">DUE DATE</p>
+                        <p style="width: 49%; display: inline-block;">: {{this.created_at}}</p>
+                        <p style="width: 49%; display: inline-block;">P.O.#</p>
+                        <p style="width: 49%; display: inline-block;">: {{this.invoice_no}}</p> -->
+                    </td>
+                    <td>
+                    {{#if this.get_invoice_details}}
+                    {{#each this.invoice_detail}}
+                        <!-- <p style="width: 49%; display: inline-block;">Name Of State</p>
+                        <p style="width: 49%; display: inline-block; line-height: 8px !important;" class="font-weight-600 word-break">{{this.name_of_state}}</p>
+                        <p style="width: 49%; display: inline-block;">License Order No</p>
+                        <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">{{this.license_order}}</p>
+                        <p style="width: 49%; display: inline-block;">License Sent to</p>
+                        <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">{{this.license_sent}}</p> -->
+                        <p style="width: 49%; display: inline-block;">Place Of Supply</p>
+                        <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">{{this.place_of_supply}}</p>
+                    
+                    {{/each}}
+                    </td>
+                    {{else}}
+                    
+                    <td>
+                    <p style="width: 49%; display: inline-block;">Name Of State</p>
+                    <p style="width: 49%; display: inline-block; line-height: 8px !important;" class="font-weight-600 word-break">
+                    <p style="width: 49%; display: inline-block;">License Order No</p>
+                    <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">RPCW277000074345145</p>
+                    <p style="width: 49%; display: inline-block;">License Sent to</p>
+                    <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">TANVI Fitness Private Limited</p>
+                    <p style="width: 49%; display: inline-block;">Place Of Supply</p>
+                    <p style="width: 49%; display: inline-block;" class="font-weight-600 word-break">Dadra And Nagar Haveli</p>
+                    </td>
+                    {{/if}}
+                </tr>
+            </tbody>
+        </table>
+        <table class="bodyTable" style="border-bottom: none;">
+            <tbody>
+                <tr>
+                    <td style="background-color: #f3f3f3; width: 50%; line-height: 0px !important; height: 10px !important; font-size: 8px; vertical-align: middle !important;">
+                        <span class="font-weight-600">Bill To</span>
+                    </td>
+                    <td style="background-color: #f3f3f3; width: 50%; line-height: 0px !important; height: 10px !important; font-size: 8px; vertical-align: middle !important;">
+                        <span class="font-weight-600">Ship To</span>
+                    </td>
+                </tr>
+                <tr class="no-bottom-border">
+                    <td style="width: 50%;">
+                        {{#if this.gst}}
+                        <div class="display-inline">
+                            {{#each this.gst_details}}
+                            <p>{{this.business_name}}</p>
+                            <p style="line-height: 11px !important">{{this.address_1}} {{this.address_2}} {{this.city}} {{this.state}} {{this.pincode}}</p>
+                            <P>GSTIN : {{this.gst_number}}</P>
+                            {{/each}}
+                        </div>
+                        {{else}}
+                            <div class="display-inline">
+                            {{#each this.user_address_id}}
+                            <p>{{this.name}}</p>
+                            <p style="line-height: 11px !important">{{this.house_no}} {{this.address_line_1}} {{this.address_line_2}} {{this.landmark}} {{this.city}} {{this.state}} {{this.country}} {{this.pincode}}</p>
+                            <!-- <p style="margin-top: -3px;">Dadra and Nagar Haveli and Daman and Diu India</p> -->
+                            {{/each}}
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td style="width: 50%;">
+                        <div class="display-inline">
+                            {{#each this.user_address_id}}
+                            <p>{{this.name}}</p>
+                            <p style="line-height: 11px !important">{{this.house_no}} {{this.address_line_1}} {{this.address_line_2}} {{this.landmark}} {{this.city}} {{this.state}} {{this.country}} {{this.pincode}}</p>
+                            <!-- <p style="margin-top: -3px;">Dadra and Nagar Haveli and Daman and Diu India</p> -->
+                            {{/each}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bodyTable" style="border-bottom: none;">
+            <tbody>
+                <tr class="no-bottom-border">
+                    <td style="background-color: #f3f3f3; line-height: 0px !important; height: 10px !important; font-size: 8px; vertical-align: bottom !important; width: 36%; padding-bottom: 7px;">
+                        <span class="font-weight-600">Item & Description</span>
+                    </td>
+                    <td style="background-color: #f3f3f3; line-height: 0px !important; height: 10px !important; font-size: 8px; vertical-align: bottom !important; width: 6%; padding-bottom: 7px; text-align: end;">
+                        <span class="font-weight-600">Qty</span>
+                    </td>
+                    <td style="background-color: #f3f3f3; line-height: 0px !important; height: 10px !important; font-size: 8px; vertical-align: bottom !important; width: 10%; padding-bottom: 7px; text-align: end;">
+                        <span class="font-weight-600">Amount</span>
+                    </td>
+                </tr>
+                <tr class="no-bottom-border">
+                    <td style="width: 36%;">
+                        {{#each this.product}}
+                        {{#each this.products}}
+                        <p style="padding-bottom: 2px;">{{this.category_details.parent_name.name}} ( {{this.category_details.name}} )</p>
+                        {{#each this.question_list}}
+                        <p style="padding-bottom: 2px;">{{this.question}} : {{this.answer_label}}</p>
+                        {{/each}}
+                        {{#if this.package_details}}
+                        <p style="padding-bottom: 2px;">Package : {{this.package_details.title}}</p>
+                        <p style="padding-bottom: 2px;">Package Price : {{this.package_details.charge}}</p>
+                        {{/if}}
+                        <p style="padding-bottom: 5px;">Price : {{this.CURRENCY}} {{this.price_list_details.price}}</p>
+                        {{/each}}
+                        {{/each}}
+                    </td>
+                    <td style="width: 6%;" class="text-align-right">
+                        {{#each this.product}}
+                        {{#each this.products}}
+                        <p style="padding-bottom: 5px;">{{this.price_list_details.qty}}</p>
+                        {{#each this.question_list}}
+                        <p style="padding-bottom: 2px;"></p>
+                        {{/each}}
+                        <p style="padding-bottom: 5px;"></p>
+                        {{/each}}
+                        {{/each}}
+                    </td>
+                    <td style="width: 10%;" class="text-align-right">
+                        {{#each this.product}}
+                        {{#each this.products}}
+                        <p style="padding-bottom: 5px;">{{this.CURRENCY}} {{this.price_list_details.price}}</p>
+                        {{#each this.question_list}}
+                        <p style="padding-bottom: 2px;"></p>
+                        {{/each}}
+                        <p style="padding-bottom: 5px;"></p>
+                        {{/each}}
+                        {{/each}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bodyTable">
+            <tbody>
+                <tr>
+                    <td style="width: 50%; padding-top: 10px; border-bottom: none">
+                        <p>Total In Words</p>
+                        <p class="font-weight-600 word-break" style="font-style: oblique; line-height: 11px !important;">Rupees {{this.total_number_word}} Only</p>
+                        <p style="margin-top: 25px;">Thanks for your business.</p>
+                    </td>
+                    <td style="width: 50%; padding: 0px !important;">
+                        <div class="display-inline" style="width: 80%; text-align: right;">
+                            <p>Total Product Price</p>
+                            {{#each this.product}}
+                            {{#if this.total_package_amount}}
+                            <p>Total Package Price</p>
+                            {{/if}}
+                            {{#if this.coupon_code_details}}
+                            <p>Coupon Code</p>
+                            <p>Coupon Code Discount</p>
+                            {{/if}}
+                            {{/each}}
+                            <p class="font-weight-600">Total</p>
+                            <!-- <p>Payment Made</p>
+                            <p class="font-weight-600">Balance Due</p> -->
+                        </div>
+                        <div class="display-inline" style="width: 15%; text-align: right;">
+                            {{#each this.product}}
+                            <p>{{this.CURRENCY}} {{this.total_amount}}</p>
+                            {{#if this.total_package_amount}}
+                            <p>{{this.CURRENCY}} {{this.total_package_amount}}</p>
+                            {{/if}}
+                            {{#if this.coupon_code_details}}
+                            <p>{{this.coupon_code_details.coupon_name}}</p>
+                            <p>{{this.CURRENCY}} {{this.discount}}</p>
+                            {{/if}}
+                            {{/each}}
+                            <p class="font-weight-600">{{this.CURRENCY}} {{this.total_paid_amount}}</p>
+                            <!-- <p style="color: red;">(-) 2,122.82</p>
+                            <p class="font-weight-600">₹0.00</p> -->
+                        </div>
+                        <div style="border-top: 1px solid rgba(0,0,0,.225); text-align: center;">
+                            {{#if this.get_invoice_details}}
+                            {{#each this.invoice_detail}}
+                            <p>{{this.auth_name}}</p>
+                            <img src="https://localhost:8000/{{this.auth_logo}}" height="90px" />
+                            {{/each}}
+                            {{else}}
+                            <img src="http://localhost:8000/logo/image-000.png" height="40px" />
+                            {{/if}}
+
+                            <p>Authorized Signatory</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="no-bottom-border">
+                    <td style="border-right: none; border-top: none;"></td>
+                    <td style="border-left: none;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <table class="bodyTable" style="border-bottom: none;">
+            <tbody>
+                <tr>
+                    <td style="width: 10%; border-right: none; padding: 10px !important;">
+                        <img src="http://13.234.30.96:8000/logo/image-003.png" height="140px" />
+                    </td>
+                    <td style="width: 90%; border-left: none;">
+                        <div class="display-inline" style="width: 15%; padding-top: 10px !important; vertical-align: top !important;">
+                            <p style="margin-bottom: 20px;">IRN :</p>
+                            <p>Ack No. :</p>
+                            <p>Ack Date :</p>
+                        </div>
+                        <div class="display-inline" style="width: 83%; padding-top: 10px !important;">
+                            <p class="font-weight-600 word-break" style="margin-bottom: 20px; line-height: 8px !important">da54064f190ad81edd2f4f956ac8e20c0dc6f96ce5ac6df59a7c74fc16f508ae</p>
+                            <p class="font-weight-600">152211608722720</p>
+                            <p class="font-weight-600">2022-01-25 15:04:00</p>
+                        </div>
+                        <p style="margin-top: 15px;">e-Invoicing detail(s) generated from the Government's e-Invoicing system.</p>
+                    </td>
+                </tr> 
+                <tr style="height: 100px;" class="no-bottom-border">
+                    <td colspan="2" style="width: 100%;"></td>
+                </tr>
+                <tr style="border-top: none;" class="no-bottom-border">
+                    <td colspan="2" style="width: 100%; border-top: none;">
+                        <div class="display-inline" style="width: 75%; padding-top: 10px !important;">
+                            <p style="font-size: 10px;"><b>To</b></p>
+                            <p>TANVI Fitness Private Limited</p>
+                            <p style="line-height: 8px !important;">287/288 Landmark Business HUB, Tokarkhada Silvassa Dadra And Nagar Haveli Dadra and Nagar Haveli and Daman and Diu 396230 India</p>
+                        </div>
+                        <div class="display-inline" style="width: 23%; padding-top: 10px !important; vertical-align: top !important;">
+                            <p>{{this.created_at}}</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="border-top: none; margin-top: 30px !important;" class="no-bottom-border">
+                    <td colspan="2" style="width: 100%; border-top: none;">
+                        <p style="font-size: 8px; text-align: center !important; margin-bottom: 15px;"><b>TO WHOMSOEVER IT MAY CONCERN</b></p>
+                        
+                        <p class="word-break" style="line-height: 10px !important">We hereby confirm that software supplied vide Invoice {{this.invoice_no}} dated {{this.created_at}} is acquired in a subsequent transfer and it is transferred without any modification and tax has been deducted under section 194J  on payment during the previous transfer of such software deposited under PAN No: AAACZ4322M by the PAN Holder. Hence TDS need not be deducted on this invoice as per Notification No: 21/2012 ( F. No. 142/10/2012- SO 1323(E)), dated 13-06-2012 issued by the Ministry of Finance (CBDT) our PAN is AAACZ5230C.</p>
+                    </td>
+                </tr>
+                <tr style="border-top: none; margin-top: 30px !important;" class="no-bottom-border">
+                    <td colspan="2" style="width: 100%; border-top: none;">
+                        <p>Thank You, </p>
+                        <p style="margin-top: 20px !important;">Your’s Sincerely</p>
+                        <p>For Zoho Technologies Pvt Ltd</p>
+                    </td>
+                </tr>
+                <tr style="border-top: none; margin-top: 30px !important;">
+                    <td colspan="2" style="width: 100%; border-top: none;">
+                        <img src="http://13.234.30.96:8000/logo/image-000.png" height="90px" />
+                        <p>Signatory</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+        {{/each}}
+    </body>
+</html>

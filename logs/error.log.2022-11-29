@@ -1,0 +1,21 @@
+{"level":"error","message":"error - CastError: Cast to ObjectId failed for value \"\" (type string) at path \"category_id\""}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - Error: ENOENT: no such file or directory, unlink 'uploads/1667574937434-BMP.png'"}
+{"level":"error","message":"error - Error: ENOENT: no such file or directory, unlink 'uploads/1667574937434-BMP.png'"}
+{"level":"error","message":"error - Error: ENOENT: no such file or directory, unlink 'uploads/1667574937434-BMP.png'"}
+{"level":"error","message":"error - Error: ENOENT: no such file or directory, unlink 'uploads/1667574937434-BMP.png'"}
+{"level":"error","message":"error - TypeError: questionModel.filter is not a function"}
+{"level":"error","message":"error - TypeError: questionModel.findAll is not a function"}
+{"level":"error","message":"error - TypeError: questionModel.findAll is not a function"}
+{"level":"error","message":"error - ReferenceError: filteredUsers is not defined"}
+{"level":"error","message":"error - MongoServerError: BSON field 'skip' value must be >= 0, actual value '-20'"}
+{"level":"error","message":"error - ReferenceError: result is not defined"}
+{"level":"error","message":"error - ObjectParameterError: Parameter \"filter\" to find() must be an object, got "}
+{"level":"error","message":"error - ReferenceError: result is not defined"}
+{"level":"error","message":"error - ReferenceError: page is not defined"}
+{"level":"error","message":"error - ReferenceError: search is not defined"}
+{"level":"error","message":"error - ReferenceError: getQuestionsAdmin is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'params' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'params' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'page' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'page' of undefined"}

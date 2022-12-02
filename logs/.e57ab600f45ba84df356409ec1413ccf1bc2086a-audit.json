@@ -19,6 +19,16 @@
             "date": 1669783222234,
             "name": "logs\\access.log.2022-11-30",
             "hash": "3d5aecfe8d4460169f5e367d62804a32"
+        },
+        {
+            "date": 1669867495533,
+            "name": "logs\\access.log.2022-12-01",
+            "hash": "f83423f64cf34aed5e4d162fe2781771"
+        },
+        {
+            "date": 1669956418593,
+            "name": "logs\\access.log.2022-12-02",
+            "hash": "35ea622110e2d85725f32b552695d8c8"
         }
     ],
     "hashType": "md5"

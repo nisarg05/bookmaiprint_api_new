@@ -380,7 +380,7 @@ exports.getAllUserOrderList = async(req,res,next) => {
         var count = await count_orders(condition);
 
         let orders = await orderModel.find(condition).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = []
-
+   
         for(let i = 0; i < orders.length; i++)
         {
             result.push(await order_details(orders[i]._id))
@@ -389,7 +389,7 @@ exports.getAllUserOrderList = async(req,res,next) => {
         let update_recent_order = await orderModel.updateMany(condition,{$set :{
             is_recent: 0
         }});
-
+        console.log(  result); 
         res.status(200).json({
             status:message.messages.TRUE,
             message:message.messages.DATA_GET_SUCCESSFULLY,
@@ -404,7 +404,7 @@ exports.getAllUserOrderList = async(req,res,next) => {
         console.log(error);
         res.status(400).json({
             status:message.messages.FALSE,
-            message:error
+            message:error || error.message
         })
     }
 }

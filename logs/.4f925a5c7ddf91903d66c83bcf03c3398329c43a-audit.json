@@ -19,6 +19,16 @@
             "date": 1669783222236,
             "name": "logs\\error.log.2022-11-30",
             "hash": "e356b06bfb930f640f7d8f56ffa88776"
+        },
+        {
+            "date": 1669867495539,
+            "name": "logs\\error.log.2022-12-01",
+            "hash": "19f939b2ff14dcd7c3b13995473eb418"
+        },
+        {
+            "date": 1669956418599,
+            "name": "logs\\error.log.2022-12-02",
+            "hash": "f9e6e68e19d098539c0b2914975d8d58"
         }
     ],
     "hashType": "md5"

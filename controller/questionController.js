@@ -20,6 +20,7 @@ const multer = require('multer');
 const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
+const { categoryList } = require('./requestCategoryController');
 const logger = require('../utils/logger').logger;
 
 exports.questionCreate = async(req,res,next) => {
@@ -396,29 +397,73 @@ exports.getQuestionsAdmin = async(req,res,next) => {
     try {
         const page = req.params.page;
         const limit = 20;
-      
-
-        var count = await count_qustions(req.body.name);
-        let user_id = req.user != null && req.user.user_id != undefined && req.user.user_id != null && req.user.user_id != "" ? req.user.user_id : null;
-
-        // var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
+      var result= [];
+             var count = 0;
+              var category_id;
+                var details;
+    
+          // var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
+          let user_id = req.user != null && req.user.user_id != undefined && req.user.user_id != null && req.user.user_id != "" ? req.user.user_id : null;
+       
+          var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1});
+          
+                for(let i = 0; i < questionList.length; i++)
+                {
+                    details = await get_question_info_admin(questionList[i]);
+             
+                    if(questionList[i].vender_id.includes(mongoose.Types.ObjectId(user_id))) {
+                        details['is_vender_enable'] = 1
+                      } else {
+                          details['is_vender_enable'] = 0
+                      }
+                      result.push(details);
+                  }
         
-        var questionList = await questionModel.find({deleted_at: null,question: { $regex : '.*'+ req.body.name + '.*', $options: 'i' }}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
-          console.log(questionList);
-        for(let i = 0; i < questionList.length; i++)
-        {
-            let details = await get_question_info_admin(questionList[i]);
-            console.log(questionList[i].vender_id.includes(mongoose.Types.ObjectId(user_id)), user_id, questionList[i].vender_id)
-            if(questionList[i].vender_id.includes(mongoose.Types.ObjectId(user_id))) {
-                details['is_vender_enable'] = 1
-            } else {
-                details['is_vender_enable'] = 0
-            }
-            result.push(details);
-        }
-        console.log("--details", result.length);
+          count +=  await count_qustions(req.body.name);
+         
 
-        res.status(200).json({
+       if(req.body.name){
+        var cartegoryList = await categoryModel.find({ name:  { $regex : '.*'+ req.body.name + '.*' }})
+        console.log("======================");
+        console.log(cartegoryList);
+        console.log("======================");
+        for(let i = 0; i < cartegoryList.length; i++)
+        {
+          
+            category_id =  cartegoryList[i]._id;
+          
+            questionList = await questionModel.find({deleted_at: null,category_id:category_id }).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1})
+            let all_quations= await questionModel.find({deleted_at: null,category_id:category_id })
+            count += all_quations.length;
+            for(let i = 0; i < questionList.length; i++)
+            {
+              
+                details = await get_question_info_admin(questionList[i]);
+                result.push(details);
+            }
+
+
+           //for parent category id
+           category_id =  cartegoryList[i].parent_id;
+           questionList = await questionModel.find({deleted_at: null,category_id:category_id }).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1})
+           all_quations= await questionModel.find({deleted_at: null,category_id:category_id })
+           count += all_quations.length;
+           for(let i = 0; i < questionList.length; i++)
+           {
+             
+               details = await get_question_info_admin(questionList[i]);
+               result.push(details);
+           }
+
+
+         
+           
+          }
+           console.log("--RESULT DATA---"+result)
+          console.log("TOTAL---"+count);
+          console.log("category questions length: "+ questionList.length);
+        }
+          res.status(200).json({
             status:message.messages.TRUE,
             message:message.messages.DATA_GET_SUCCESSFULLY,
             data: {
@@ -428,6 +473,9 @@ exports.getQuestionsAdmin = async(req,res,next) => {
                 count: count,
             }
         })
+
+   
+      
     }
     
 
@@ -616,15 +664,16 @@ async function get_question_info(data) {
 
 async function get_question_info_admin(data) {
     let result = "";
+    console.log("========data", data);
     if(data)
     {
         let optionResult = [];
         let parent_info = await answerModel.findOne({_id: data.answer_id, deleted_at: null}).select(["option","question_id"]).sort({_id: -1}); 
-
         let category_info = await categoryModel.findOne({_id: data.category_id, deleted_at: null}).select(["name","description","is_enable","parent_id"]).sort({_id: -1}), child_info = null; 
         if(category_info)
+        console.log("!!!!!!!!!Data  Category data", category_info);
         {
-            child_info = await categoryModel.findOne({_id: category_info.parent_id, deleted_at: null}).select(["name","description","is_enable"]).sort({_id: -1});
+            child_info = await categoryModel.findOne({_id: category_info?.parent_id, deleted_at: null}).select(["name","description","is_enable"]).sort({_id: -1});
         }
 
         let answer_info = await answerModel.find({question_id: data._id, deleted_at: null}).select(["option","has_question","has_price","parent_question_id","image"]).sort({_id: -1});
@@ -638,11 +687,13 @@ async function get_question_info_admin(data) {
                 parent_question_info = parent_ans_ques_info.question
             }
         }
+    
 
         for(let i = 0; i < answer_info.length; i++)
         {
             let details = {
                 "_id": answer_info[i]._id,
+               
                 "option": answer_info[i].option,
                 "image": answer_info[i].image != undefined && answer_info[i].image != "undefined" && answer_info[i].image != null && answer_info[i].image != "null" && answer_info[i].image != "" ? answer_info[i].image : "",
                 "has_question": answer_info[i].has_question != undefined && answer_info[i].has_question != null && answer_info[i].has_question != "" && answer_info[i].has_question == 1 || answer_info[i].has_question == '1' ? 1 : 0,
@@ -666,6 +717,7 @@ async function get_question_info_admin(data) {
             answer_id: data.answer_id != undefined && data.answer_id != null && data.answer_id != "" && parent_info != null ? data.answer_id : null,
             answer: parent_info != null ? parent_info.option : null,
             parent_question_info: parent_question_info,
+            
             options: answer_info != null ? optionResult : [],
             created_at: userController.changeDateFormat(data.created_at),
             deleted_at: data.deleted_at != null ? userController.changeDateFormat(data.deleted_at) : null

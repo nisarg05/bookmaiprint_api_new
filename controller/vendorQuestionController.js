@@ -369,7 +369,7 @@ exports.getQuestionsAdmin = async(req,res,next) => {
         const limit = 20;
         var count = await count_qustions();
 
-        console.log("user_id",user_id);
+        // console.log("user_id",user_id);
 
         var questionList = await questionModel.find({deleted_at: null}).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
 
@@ -378,9 +378,10 @@ exports.getQuestionsAdmin = async(req,res,next) => {
         for(let i = 0; i < questionList.length; i++)
         {
             let details = await get_question_info_admin(questionList[i]);
+            console.log("========>>>>", details);
             result.push(details);
         }
-
+console.log("===>>result ", result);
         res.status(200).json({
             status:message.messages.TRUE,
             message:message.messages.DATA_GET_SUCCESSFULLY,

@@ -12,10 +12,11 @@ let transport = nodemailer.createTransport({
 async function send_mail(email, title, data) {
     const message = {
         from: 'bhoomiqf@gmail.com', // Sender address
-        to: "daxita.patel84@gmail.com", // List of recipients
+        to: "email", // List of recipients
         subject: title, // Subject line
         html: "<h5 class='mt-2'>"+data+"</h5>" // Plain text body
     };
+    console.log("--------data", data);
 
     transport.sendMail(message, function(err, info) {
         if (err) {

@@ -1,0 +1,62 @@
+{"level":"error","message":"error - ReferenceError: count is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - MongooseError: Query was already executed: category.find({})"}
+{"level":"error","message":"error - TypeError: categoryModel.find(...).trim is not a function"}
+{"level":"error","message":"error - ReferenceError: cartegoryList is not defined"}
+{"level":"error","message":"error - ReferenceError: cartegoryList is not defined"}
+{"level":"error","message":"error - ReferenceError: cartegoryList is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - ReferenceError: i is not defined"}
+{"level":"error","message":"error - ReferenceError: i is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'includes' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'parent_id' of null"}
+{"level":"error","message":"error - TypeError: Cannot read property 'parent_id' of null"}
+{"level":"error","message":"error - TypeError: Cannot read property 'parent_id' of null"}
+{"level":"error","message":"error - TypeError: Cannot read property 'parent_id' of null"}
+{"level":"error","message":"error - TypeError: Cannot read property 'parent_id' of null"}
+{"level":"error","message":"error - TypeError: Cannot read property 'vender_id' of undefined"}
+{"level":"error","message":"error - ReferenceError: cat is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'vender_id' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'vender_id' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - ReferenceError: user_id is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}

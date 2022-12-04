@@ -60,3 +60,7 @@
 {"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
 {"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
 {"level":"error","message":"error - TypeError: Cannot read property 'length' of undefined"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - ReferenceError: quetion_name is not defined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'keyword' of undefined"}
+{"level":"error","message":"error - TypeError: Cannot read property 'push' of undefined"}

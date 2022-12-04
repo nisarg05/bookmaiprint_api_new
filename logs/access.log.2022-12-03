@@ -1,0 +1,27 @@
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - TypeError: categoryModel.find.or is not a function"}
+{"level":"error","message":"error - TypeError: categoryModel.find.or is not a function"}
+{"level":"error","message":"error - TypeError: categoryModel.find.or is not a function"}
+{"level":"error","message":"error - TypeError: categoryModel.find.or is not a function"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - MongoServerError: $regex has to be a string"}
+{"level":"error","message":"error - CastError: Cast to Array failed for value \"{ deleted_at: null }\" (type Object) at path \"$or\" for model \"category\""}
+{"level":"error","message":"error - CastError: Cast to Array failed for value \"{ deleted_at: null }\" (type Object) at path \"$or\" for model \"category\""}
+{"level":"error","message":"error - CastError: Cast to Array failed for value \"{}\" (type Object) at path \"$or\" for model \"category\""}
+{"level":"error","message":"error - CastError: Cast to Array failed for value \"{}\" (type Object) at path \"$or\" for model \"category\""}
+{"level":"error","message":"error - CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"priceList\""}
+{"level":"error","message":"error - CastError: Cast to ObjectId failed for value \"\" (type string) at path \"_id\" for model \"priceList\""}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670048289308-TATA_ULTRA_T.7_1608719055266_1608719091890_1649324415153.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670048296708-TATA_ULTRA_T.7_1608719055266_1608719091890_1649324415153.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670048671447-TATA_ULTRA_T.7_1608719055266_1608719091890_1649324415153.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050388629-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050411027-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050431608-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050452478-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050463394-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - Error: EBUSY: resource busy or locked, unlink 'temp\\1670050501090-00-mercedes-benz-eq-concept-cars-2560x1440.webp'"}
+{"level":"error","message":"error - TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'Array'\n    --- index 1 closes the circle"}
+{"level":"error","message":"error - TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'Array'\n    --- index 2 closes the circle"}

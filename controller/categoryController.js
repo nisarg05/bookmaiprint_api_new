@@ -449,20 +449,35 @@ exports.getCategories = async(req,res,next) => {
         const limit = 20;
         var count = await count_categoties();
         var where = {}
-        where.deleted_at=null
+      //  where.deleted_at=null
         
         if(req.body.search?.keyword && req.body.search?.keyword!=""){
 
-            where.name = {$regex : req.body.search?.keyword}
+            where=[ {name :{$regex : req.body.search?.keyword} },  { description :{$regex : req.body.search?.keyword}}  ] ;
         }
-        var categoryList = await categoryModel.find(where).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
+        else
+        {
+            where=[ {deleted_at : null }] ;
+        
+        }
+       
+      
+
+
+
+        var categoryList = await categoryModel.find( { $or:  where }).limit(limit * 1).skip((page - 1) * limit).sort({_id: -1}), result = [];
      
+
+
+
       for(let i = 0; i < categoryList.length; i++)
         {
             let details = await get_category_info(categoryList[i]);
             result.push(details);
         }
         
+
+
         res.status(200).json({
             status:message.messages.TRUE,
             message:message.messages.DATA_GET_SUCCESSFULLY,
@@ -740,6 +755,7 @@ async function get_category_info(data) {
         }
 
         let parent_info = await categoryModel.findOne({_id: data.parent_id, deleted_at: null}).select(["name","description","is_enable"]).sort({_id: -1}).lean(); 
+        console.log("======parent_info", parent_info);
         result = {
             _id: data._id,
             name: data.name,
@@ -754,6 +770,7 @@ async function get_category_info(data) {
             created_at: userController.changeDateFormat(data.created_at),
             deleted_at: data.deleted_at != null ? userController.changeDateFormat(data.deleted_at) : null
         }
+        console.log("======result", result);
     }
 
     return result;

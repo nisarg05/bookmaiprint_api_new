@@ -44,8 +44,9 @@ exports.getQuestionList = async(req,res,next) => {
 exports.getQuestionListByParent = async(req,res,next) => {
     try {
         let answer_id = req.params.id, has_question = 0;
+        var SelfquestionListData = await answerModel.find({deleted_at: null, is_enable: 1, has_answer: 1, _id: answer_id});
+       
         var questionList = await questionModel.find({deleted_at: null, is_enable: 1, has_answer: 1, answer_id: answer_id}), result = [];
-
         if(questionList.length > 0)
         {
             has_question = 1;
@@ -67,12 +68,13 @@ exports.getQuestionListByParent = async(req,res,next) => {
                 result.push(details[i]);
             }
         }
-
+       
         res.status(200).json({
             status:message.messages.TRUE,
             message:message.messages.DATA_GET_SUCCESSFULLY,
             data: result,
-            has_question: has_question
+            has_question: has_question,
+            Selected_option: SelfquestionListData
         })
     }
     catch(error) {

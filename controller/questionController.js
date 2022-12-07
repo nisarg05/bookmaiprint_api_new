@@ -21,6 +21,7 @@ const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
 const { categoryList } = require('./requestCategoryController');
+const { reverse } = require('dns');
 const logger = require('../utils/logger').logger;
 
 exports.questionCreate = async(req,res,next) => {
@@ -580,7 +581,7 @@ exports.getQuestionByIdAdmin = async(req,res,next) => {
     try {
         const id = req.params.id;
 
-        var questionList = await questionModel.findOne({_id: id, deleted_at: null});
+        var questionList = await questionModel.findOne({_id: id, deleted_at: null}).sort(desc);
 
         let details = await get_question_info_admin(questionList);
 
@@ -689,7 +690,7 @@ async function get_question_info_admin(data) {
         }
     
 
-        for(let i = 0; i < answer_info.length; i++)
+        for(let i = answer_info.length+1; i >= 0; i--)
         {
             let details = {
                 "_id": answer_info[i]._id,
@@ -703,6 +704,7 @@ async function get_question_info_admin(data) {
             };
 
             optionResult.push(details);
+          
         }
 
         result = {
